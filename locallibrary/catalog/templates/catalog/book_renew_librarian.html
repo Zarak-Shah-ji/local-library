@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!--- We are able to reference {{ book_instance }} (and its variables)
+ because it was passed into the context object in the render() function,-->
+  <h1 class="display-4">Renew: {{ book_instance.book.title }}</h1>
+  <p>Borrower: {{ book_instance.borrower }}</p>
+  <p{% if book_instance.is_overdue %} class="text-danger"{% endif %}>Due date: {{ book_instance.due_back }}</p>
+    
+  <!--form data will be posted back to the current url because action is empty-->
+  <form action="" method="post">
+<!---Add the {% csrf_token %} to every Django template you create that uses POST to submit data. 
+     This will reduce the chance of forms being hijacked by malicious users-->
+    {% csrf_token %}
+    <table>  
+    {{ form.as_table }}
+    <!--or can use form.as_ul or form.as_p-->
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

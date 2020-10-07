@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1 class="display-4">Borrowed books</h1>
+   <!--see bookinstance_list in book list pgs-->
+    {% if bookinstance_list %}
+    <ul>
+
+      {% for bookinst in bookinstance_list %} 
+      <!--we check the method we added in the model (bookinst.is_overdue) and use it to change the colour of overdue items-->
+      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})        
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no books borrowed.</p>
+    {% endif %}       
+{% endblock %}

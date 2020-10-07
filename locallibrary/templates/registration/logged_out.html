@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="alert alert-success alert-dismissible" style="margin-top:50px">
+   <strong>Logged out! Cheers.</strong>
+</div> 
+<div class='container'style="text-align:center; margin-top:100px">
+  <a href="{% url 'login'%}"class="btn  btn-info">Click here to login again.</a>
+  </div>
+{% endblock %}
